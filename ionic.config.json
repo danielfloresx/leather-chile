@@ -1,0 +1,7 @@
+{
+  "name": "leather-chile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
