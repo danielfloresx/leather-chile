@@ -1,0 +1,108 @@
+/* ==================================================
+   MENÚ LATERAL - LEATHER CHILE
+   ================================================== */
+
+
+/* Ancho del menú */
+ion-menu {
+  --width: 280px;
+}
+
+
+/* Barra superior */
+ion-menu ion-toolbar {
+  --background: #ffffff;
+  --color: #1c1c1c;
+}
+
+
+/* Título */
+ion-menu ion-title {
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* Fondo */
+ion-menu ion-content {
+  --background: #f7f5f2;
+}
+
+
+/* Presentación de la marca */
+.menu-brand {
+  padding: 28px 20px 18px;
+}
+
+
+.menu-brand h2 {
+  margin: 0;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  color: #1c1c1c;
+}
+
+
+.menu-brand p {
+  margin-top: 6px;
+
+  font-size: 13px;
+
+  color: #6b6b6b;
+}
+
+
+/* Lista principal */
+ion-list {
+  background: transparent;
+
+  padding: 8px 12px;
+}
+
+
+/* Opciones principales */
+ion-item {
+  --background: transparent;
+
+  --color: #1c1c1c;
+
+  --border-radius: 10px;
+
+  margin-bottom: 4px;
+
+  font-size: 15px;
+}
+
+
+/* Efecto al pasar sobre una opción */
+ion-item:hover {
+  --background: #e7ddd3;
+}
+
+
+/* Texto */
+ion-label {
+  font-weight: 500;
+}
+
+
+/* ==================================================
+   SUBMENÚ ADMINISTRACIÓN
+   ================================================== */
+
+.admin-submenu {
+  padding-left: 18px;
+
+  background: #f7f5f2;
+}
+
+
+/* Hace visualmente más pequeños los subitems */
+.admin-submenu ion-item {
+  font-size: 14px;
+
+  --color: #5f3f2c;
+}

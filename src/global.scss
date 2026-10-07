@@ -35,3 +35,260 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/* ==================================================
+   LEATHER CHILE - ESTILO GLOBAL
+   Negro · Gris · Blanco
+   ================================================== */
+
+
+/* Fondo general de todas las páginas */
+ion-content {
+  --background: #f3f3f3 !important;
+  color: #181818;
+}
+
+
+/* ==================================================
+   BARRA SUPERIOR
+   ================================================== */
+
+ion-toolbar {
+  --background: #111111 !important;
+  --color: #ffffff !important;
+  --border-color: #292929;
+}
+
+ion-title {
+  color: #ffffff !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+ion-menu-button {
+  --color: #ffffff !important;
+}
+
+
+/* ==================================================
+   MENÚ LATERAL
+   ================================================== */
+
+ion-menu ion-content {
+  --background: #181818 !important;
+}
+
+ion-menu ion-list {
+  background: #181818 !important;
+}
+
+ion-menu ion-item {
+  --background: #181818 !important;
+  --color: #eeeeee !important;
+  --border-color: #333333;
+}
+
+ion-menu ion-item:hover {
+  --background: #292929 !important;
+}
+
+ion-menu ion-label {
+  color: #eeeeee !important;
+}
+
+ion-menu ion-accordion {
+  background: #181818 !important;
+}
+
+ion-menu ion-accordion-group {
+  background: #181818 !important;
+}
+
+
+/* ==================================================
+   TARJETAS
+   ================================================== */
+
+ion-card {
+  --background: #ffffff !important;
+  color: #181818 !important;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.12);
+
+  border: 1px solid #e2e2e2;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+ion-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 9px 24px rgba(0, 0, 0, 0.18);
+}
+
+ion-card-title,
+ion-card-subtitle,
+ion-card-content {
+  color: #181818;
+}
+
+
+/* ==================================================
+   BOTONES
+   ================================================== */
+
+ion-button {
+  --background: #161616;
+  --background-hover: #333333;
+  --background-activated: #333333;
+
+  --color: #ffffff;
+
+  --border-radius: 8px;
+
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+
+/* Botones outline */
+ion-button[fill="outline"] {
+  --color: #181818;
+  --border-color: #181818;
+  --background: transparent;
+}
+
+
+/* ==================================================
+   FORMULARIOS
+   ================================================== */
+
+ion-item {
+  --background: #ffffff;
+  --color: #181818;
+
+  --border-color: #d5d5d5;
+
+  border-radius: 8px;
+
+  margin-bottom: 10px;
+}
+
+ion-input,
+ion-textarea,
+ion-select {
+  --color: #181818;
+  --placeholder-color: #777777;
+}
+
+
+/* ==================================================
+   BUSCADOR
+   ================================================== */
+
+ion-searchbar {
+  --background: #ffffff;
+  --color: #181818;
+
+  --placeholder-color: #777777;
+  --icon-color: #444444;
+
+  --border-radius: 10px;
+}
+
+
+/* ==================================================
+   TOGGLE
+   ================================================== */
+
+ion-toggle {
+  --track-background: #bcbcbc;
+  --track-background-checked: #333333;
+
+  --handle-background: #ffffff;
+  --handle-background-checked: #ffffff;
+}
+
+
+/* ==================================================
+   MODAL
+   ================================================== */
+
+ion-modal {
+  --background: #f3f3f3;
+}
+
+
+/* ==================================================
+   ALERTAS
+   ================================================== */
+
+.alert-wrapper {
+  background: #ffffff !important;
+  color: #181818 !important;
+}
+
+
+/* ==================================================
+   TEXTOS
+   ================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #181818;
+}
+
+p {
+  color: #666666;
+}
+
+
+/* ==================================================
+   TABLAS
+   ================================================== */
+
+table {
+  background: #ffffff;
+  color: #181818;
+}
+
+th {
+  background: #181818;
+  color: #ffffff;
+}
+
+td {
+  border-color: #dddddd;
+}
+
+
+/* ==================================================
+   SCROLL
+   ================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eeeeee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555555;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #222222;
+}

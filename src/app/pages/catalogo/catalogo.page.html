@@ -1,0 +1,172 @@
+<!-- Encabezado -->
+<ion-header>
+
+  <ion-toolbar>
+
+
+    <!-- Menú lateral -->
+    <ion-buttons slot="start">
+
+      <ion-menu-button
+        menu="main-menu">
+      </ion-menu-button>
+
+    </ion-buttons>
+
+
+    <ion-title>
+      Catálogo
+    </ion-title>
+
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+
+<ion-content>
+
+
+  <!-- Presentación -->
+  <section class="catalog-header">
+
+    <h1>
+      Nuestros productos
+    </h1>
+
+    <p>
+      Explora la colección Leather Chile.
+    </p>
+
+  </section>
+
+
+
+  <!-- Buscador -->
+  <div class="search-container">
+
+    <ion-searchbar
+      placeholder="Buscar producto"
+      (ionInput)="buscar($event)">
+    </ion-searchbar>
+
+  </div>
+
+
+
+  <!-- Filtros -->
+  <div class="filters">
+
+
+  <ion-button
+    size="small"
+    [fill]="categoriaSeleccionada === 'Todos' ? 'solid' : 'outline'"
+    (click)="seleccionarCategoria('Todos')">
+
+    Todos
+
+  </ion-button>
+
+
+  <ion-button
+    size="small"
+    [fill]="categoriaSeleccionada === 'Hombre' ? 'solid' : 'outline'"
+    (click)="seleccionarCategoria('Hombre')">
+
+    Hombre
+
+  </ion-button>
+
+
+  <ion-button
+    size="small"
+    [fill]="categoriaSeleccionada === 'Mujer' ? 'solid' : 'outline'"
+    (click)="seleccionarCategoria('Mujer')">
+
+    Mujer
+
+  </ion-button>
+
+
+  <ion-button
+    size="small"
+    [fill]="categoriaSeleccionada === 'Otros Productos' ? 'solid' : 'outline'"
+    (click)="seleccionarCategoria('Otros Productos')">
+
+    Otros
+
+  </ion-button>
+
+
+</div>
+
+
+
+  <!-- Cantidad -->
+  <p class="result-count">
+
+    {{ productosFiltrados.length }}
+    productos encontrados
+
+  </p>
+
+
+  <!-- Productos -->
+  <section class="catalog-grid">
+
+    @for (
+      producto of productosFiltrados;
+      track producto.id
+    ) {
+
+      <ion-card class="catalog-card">
+
+        <ion-card-content>
+
+          <div class="catalog-image">
+            <img
+              [src]="producto.imagen"
+              [alt]="producto.nombre">
+          </div>
+
+
+          <h2>{{ producto.nombre }}</h2>
+
+          <p class="category">{{ producto.categoria }}</p>
+
+
+          <p class="description">{{ producto.descripcion }}</p>
+
+
+          <strong>${{ producto.precio.toLocaleString('es-CL') }}</strong>
+
+
+        </ion-card-content>
+
+
+      </ion-card>
+
+
+    }
+
+
+  </section>
+
+
+
+  <!-- Sin resultados -->
+  @if (productosFiltrados.length === 0) {
+
+
+    <div class="empty">
+
+      <h3>No encontramos productos</h3>
+      <p>Prueba utilizando otro nombre o categoría.</p>
+
+    </div>
+
+
+  }
+
+</ion-content>

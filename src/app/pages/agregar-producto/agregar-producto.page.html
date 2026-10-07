@@ -1,0 +1,368 @@
+<!-- ==================================================
+     ENCABEZADO
+     ================================================== -->
+
+<ion-header>
+
+  <ion-toolbar>
+
+
+    <!-- Botón que abre el menú lateral -->
+    <ion-buttons slot="start">
+
+      <ion-menu-button
+        menu="main-menu">
+      </ion-menu-button>
+
+    </ion-buttons>
+
+
+    <ion-title>
+      Agregar productos
+    </ion-title>
+
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+
+<!-- ==================================================
+     CONTENIDO
+     ================================================== -->
+
+<ion-content>
+
+
+  <!-- Presentación -->
+  <section class="form-intro">
+
+
+    <h1>
+      Nuevo producto
+    </h1>
+
+
+    <p>
+      Completa la información para registrar
+      un nuevo artículo en Leather Chile.
+    </p>
+
+
+  </section>
+
+
+
+  <!-- ==================================================
+       FORMULARIO
+       ================================================== -->
+
+  <form
+    class="product-form"
+    [formGroup]="productoForm"
+    (ngSubmit)="guardarProducto()">
+
+
+
+    <!-- ==================================================
+         NOMBRE
+         ================================================== -->
+
+    <ion-item>
+
+      <ion-input
+        label="Nombre del producto"
+        labelPlacement="stacked"
+        placeholder="Ej: Chaqueta Austral"
+        formControlName="nombre">
+      </ion-input>
+
+    </ion-item>
+
+
+
+    <!-- Nombre obligatorio -->
+    @if (
+      productoForm.get('nombre')?.touched &&
+      productoForm.get('nombre')?.hasError('required')
+    ) {
+
+      <p class="error-message">
+        El nombre es obligatorio.
+      </p>
+
+    }
+
+
+
+    <!-- Nombre mínimo -->
+    @if (
+      productoForm.get('nombre')?.touched &&
+      productoForm.get('nombre')?.hasError('minlength')
+    ) {
+
+      <p class="error-message">
+        El nombre debe tener al menos 3 caracteres.
+      </p>
+
+    }
+
+
+
+    <!-- ==================================================
+         DESCRIPCIÓN
+         ================================================== -->
+
+    <ion-item>
+
+      <ion-textarea
+        label="Descripción"
+        labelPlacement="stacked"
+        placeholder="Describe brevemente el producto"
+        rows="4"
+        formControlName="descripcion">
+      </ion-textarea>
+
+    </ion-item>
+
+
+
+    <!-- Descripción obligatoria -->
+    @if (
+      productoForm.get('descripcion')?.touched &&
+      productoForm.get('descripcion')?.hasError('required')
+    ) {
+
+      <p class="error-message">
+        La descripción es obligatoria.
+      </p>
+
+    }
+
+
+
+    <!-- Descripción mínima -->
+    @if (
+      productoForm.get('descripcion')?.touched &&
+      productoForm.get('descripcion')?.hasError('minlength')
+    ) {
+
+      <p class="error-message">
+        La descripción debe contener al menos 10 caracteres.
+      </p>
+
+    }
+
+
+
+    <!-- ==================================================
+         PRECIO
+         ================================================== -->
+
+    <ion-item>
+
+      <ion-input
+        label="Precio"
+        labelPlacement="stacked"
+        type="number"
+        placeholder="Ej: 79990"
+        formControlName="precio">
+      </ion-input>
+
+    </ion-item>
+
+
+
+    <!-- Precio obligatorio -->
+    @if (
+      productoForm.get('precio')?.touched &&
+      productoForm.get('precio')?.hasError('required')
+    ) {
+
+      <p class="error-message">
+        El precio es obligatorio.
+      </p>
+
+    }
+
+
+
+    <!-- Precio mínimo -->
+    @if (
+      productoForm.get('precio')?.touched &&
+      productoForm.get('precio')?.hasError('min')
+    ) {
+
+      <p class="error-message">
+        El precio debe ser igual o superior a $1.000.
+      </p>
+
+    }
+
+
+
+    <!-- ==================================================
+         CATEGORÍA
+         ================================================== -->
+
+    <ion-item>
+
+      <ion-select
+        label="Categoría"
+        labelPlacement="stacked"
+        placeholder="Seleccionar categoría"
+        formControlName="categoria">
+
+
+        <ion-select-option value="Hombre">
+
+          Hombre
+
+        </ion-select-option>
+
+
+        <ion-select-option value="Mujer">
+
+          Mujer
+
+        </ion-select-option>
+
+
+        <ion-select-option value="Otros Productos">
+
+          Otros Productos
+
+        </ion-select-option>
+
+
+      </ion-select>
+
+    </ion-item>
+
+
+
+    <!-- Categoría obligatoria -->
+    @if (
+      productoForm.get('categoria')?.touched &&
+      productoForm.get('categoria')?.hasError('required')
+    ) {
+
+      <p class="error-message">
+        Debes seleccionar una categoría.
+      </p>
+
+    }
+
+
+
+    <!-- ==================================================
+         CONFIGURACIÓN DEL PRODUCTO
+         ================================================== -->
+
+    <div class="form-options">
+
+
+      <!-- Mostrar en catálogo -->
+      <ion-item>
+
+        <ion-toggle
+          formControlName="publico">
+
+          Mostrar en catálogo público
+
+        </ion-toggle>
+
+      </ion-item>
+
+
+
+      <!-- Producto destacado -->
+      <ion-item>
+
+        <ion-toggle
+          formControlName="destacado">
+
+          Mostrar como producto destacado
+
+        </ion-toggle>
+
+      </ion-item>
+
+
+
+      <!-- Mensaje cuando el producto no es público -->
+      @if (
+        !productoForm.get('publico')?.value
+      ) {
+
+        <p class="option-help">
+
+          Para destacar un producto primero debes
+          mostrarlo en el catálogo público.
+
+        </p>
+
+      }
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         BOTONES
+         ================================================== -->
+
+    <div class="form-actions">
+
+
+      <!--
+        Cancela el registro y vuelve
+        a Listar productos.
+      -->
+      <ion-button
+        type="button"
+        fill="outline"
+        class="cancel-button"
+        [routerLink]="['/listar-productos']">
+
+        Cancelar
+
+      </ion-button>
+
+
+
+      <!--
+        Funcionalidad futura.
+        Por ahora permanece deshabilitada.
+      -->
+      <ion-button
+        type="button"
+        fill="outline"
+        class="excel-button"
+        disabled>
+
+        Subir Excel
+
+      </ion-button>
+
+
+
+      <!-- Guarda el producto -->
+      <ion-button
+        type="submit"
+        class="save-product-button">
+
+        Guardar producto
+
+      </ion-button>
+
+
+    </div>
+
+
+  </form>
+
+
+</ion-content>

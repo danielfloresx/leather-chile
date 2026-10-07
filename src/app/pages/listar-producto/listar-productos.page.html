@@ -1,0 +1,459 @@
+<ion-header>
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+
+      <ion-menu-button
+        menu="main-menu">
+      </ion-menu-button>
+
+    </ion-buttons>
+
+    <ion-title>
+      Listar productos
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+
+<ion-content>
+
+
+  <!-- Encabezado -->
+  <section class="list-header">
+
+
+    <div>
+
+      <h1>
+        Productos ingresados
+      </h1>
+
+      <p>
+        Revisa, modifica o elimina los productos registrados.
+      </p>
+
+    </div>
+
+
+    <ion-button
+      class="add-top-button"
+      [routerLink]="['/agregar-producto']">
+
+      + Añadir producto
+
+    </ion-button>
+
+
+  </section>
+
+
+
+  <!-- Observable -->
+  @if (
+    productosIngresados$ | async;
+    as productosIngresados
+  ) {
+
+
+    <!-- Si existen productos -->
+    @if (
+      productosIngresados.length > 0
+    ) {
+
+
+      <section class="table-container">
+
+
+        <table>
+
+
+          <thead>
+
+            <tr>
+
+              <th>ID</th>
+
+              <th>Producto</th>
+
+              <th>Categoría</th>
+
+              <th>Precio</th>
+
+              <th>Público</th>
+
+              <th>Destacado</th>
+
+              <th>Acciones</th>
+
+            </tr>
+
+          </thead>
+
+
+
+          <tbody>
+
+
+            @for (
+              producto of productosIngresados;
+              track producto.id
+            ) {
+
+
+              <tr>
+
+
+                <td>
+                  {{ producto.id }}
+                </td>
+
+
+                <td>
+                  {{ producto.nombre }}
+                </td>
+
+
+                <td>
+                  {{ producto.categoria }}
+                </td>
+
+
+                <td>
+
+                  ${{
+                    producto.precio
+                      .toLocaleString('es-CL')
+                  }}
+
+                </td>
+
+
+                <!-- Público -->
+                <td>
+
+                  @if (
+                    producto.publico
+                  ) {
+
+                    <span class="status-public">
+                      Sí
+                    </span>
+
+                  } @else {
+
+                    <span class="status-private">
+                      No
+                    </span>
+
+                  }
+
+                </td>
+
+
+                <!-- Destacado -->
+                <td>
+
+                  @if (
+                    producto.destacado
+                  ) {
+
+                    <span class="status-featured">
+                      Sí
+                    </span>
+
+                  } @else {
+
+                    <span class="status-private">
+                      No
+                    </span>
+
+                  }
+
+                </td>
+
+
+                <!-- Acciones -->
+                <td>
+
+                  <div class="action-buttons">
+
+
+                    <ion-button
+                      size="small"
+                      fill="outline"
+                      class="edit-button"
+                      (click)="abrirEditar(producto)">
+
+                      Editar
+
+                    </ion-button>
+
+
+                    <ion-button
+                      size="small"
+                      fill="outline"
+                      class="delete-button"
+                      (click)="confirmarEliminacion(producto)">
+
+                      Eliminar
+
+                    </ion-button>
+
+
+                  </div>
+
+                </td>
+
+
+              </tr>
+
+
+            }
+
+
+          </tbody>
+
+
+        </table>
+
+
+      </section>
+
+
+    } @else {
+
+
+      <!-- SIN PRODUCTOS -->
+      <section class="empty-state">
+
+
+        <div class="empty-symbol">
+          +
+        </div>
+
+
+        <h2>
+          No existen productos ingresados
+        </h2>
+
+
+        <p>
+          Comienza agregando un nuevo producto al catálogo.
+        </p>
+
+
+        <ion-button
+          class="empty-add-button"
+          [routerLink]="['/agregar-producto']">
+
+          Agregar producto
+
+        </ion-button>
+
+
+      </section>
+
+
+    }
+
+
+  }
+
+
+</ion-content>
+
+
+
+<!-- ==================================================
+     MODAL EDITAR
+     ================================================== -->
+
+<ion-modal
+  [isOpen]="modalEditarAbierto"
+  (didDismiss)="cerrarEditar()">
+
+
+  @if (productoEditando) {
+
+
+    <ion-header>
+
+      <ion-toolbar>
+
+        <ion-title>
+          Editar producto
+        </ion-title>
+
+      </ion-toolbar>
+
+    </ion-header>
+
+
+
+    <ion-content>
+
+
+      <section class="edit-container">
+
+
+        <p class="edit-help">
+          Modifica la información del producto seleccionado.
+        </p>
+
+
+
+        <!-- Nombre -->
+        <ion-item>
+
+          <ion-input
+            label="Nombre"
+            labelPlacement="stacked"
+            [(ngModel)]="productoEditando.nombre">
+          </ion-input>
+
+        </ion-item>
+
+
+
+        <!-- Descripción -->
+        <ion-item>
+
+          <ion-input
+            label="Descripción"
+            labelPlacement="stacked"
+            [(ngModel)]="productoEditando.descripcion">
+          </ion-input>
+
+        </ion-item>
+
+
+
+        <!-- Precio -->
+        <ion-item>
+
+          <ion-input
+            label="Precio"
+            labelPlacement="stacked"
+            type="number"
+            [(ngModel)]="productoEditando.precio">
+          </ion-input>
+
+        </ion-item>
+
+
+
+        <!-- Categoría -->
+        <ion-item>
+
+          <ion-select
+            label="Categoría"
+            labelPlacement="stacked"
+            [(ngModel)]="productoEditando.categoria">
+
+
+            <ion-select-option value="Hombre">
+              Hombre
+            </ion-select-option>
+
+
+            <ion-select-option value="Mujer">
+              Mujer
+            </ion-select-option>
+
+
+            <ion-select-option value="Otros Productos">
+              Otros Productos
+            </ion-select-option>
+
+
+          </ion-select>
+
+        </ion-item>
+
+
+
+        <!-- PÚBLICO -->
+        <ion-item class="toggle-option">
+
+          <ion-toggle
+            [(ngModel)]="productoEditando.publico"
+            (ngModelChange)="cambiarEstadoPublico($event)">
+
+            Mostrar en catálogo público
+
+          </ion-toggle>
+
+        </ion-item>
+
+
+
+        <!-- DESTACADO -->
+        <ion-item class="toggle-option">
+
+          <ion-toggle
+            [(ngModel)]="productoEditando.destacado"
+            [disabled]="!productoEditando.publico">
+
+            Mostrar como producto destacado
+
+          </ion-toggle>
+
+        </ion-item>
+
+
+
+        <!-- Explicación -->
+        @if (!productoEditando.publico) {
+
+          <p class="option-help">
+
+            Para destacar un producto primero debe
+            mostrarse en el catálogo público.
+
+          </p>
+
+        }
+
+
+
+        <!-- Botones -->
+        <div class="modal-actions">
+
+
+          <ion-button
+            fill="outline"
+            class="cancel-button"
+            (click)="cerrarEditar()">
+
+            Cancelar
+
+          </ion-button>
+
+
+          <ion-button
+            class="save-button"
+            (click)="guardarCambios()">
+
+            Guardar cambios
+
+          </ion-button>
+
+
+        </div>
+
+
+      </section>
+
+
+    </ion-content>
+
+
+  }
+
+
+</ion-modal>

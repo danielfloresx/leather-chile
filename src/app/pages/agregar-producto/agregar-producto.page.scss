@@ -1,0 +1,192 @@
+/* ==================================================
+   AGREGAR PRODUCTO - LEATHER CHILE
+   ================================================== */
+
+
+/* Fondo general */
+ion-content {
+  --background: #f7f5f2;
+}
+
+
+/* Barra superior */
+ion-toolbar {
+  --background: #ffffff;
+
+  --color: #1c1c1c;
+}
+
+
+/* ==================================================
+   PRESENTACIÓN
+   ================================================== */
+
+.form-intro {
+  max-width: 750px;
+
+  margin: 0 auto;
+
+  padding: 30px 20px 16px;
+}
+
+
+.form-intro h1 {
+  margin: 0;
+
+  font-size: 26px;
+
+  font-weight: 700;
+
+  color: #1c1c1c;
+}
+
+
+.form-intro p {
+  margin-top: 8px;
+
+  font-size: 14px;
+
+  color: #6b6b6b;
+}
+
+
+/* ==================================================
+   FORMULARIO
+   ================================================== */
+
+.product-form {
+  max-width: 750px;
+
+  margin: 0 auto;
+
+  padding: 0 20px 40px;
+}
+
+
+/* Campos del formulario */
+.product-form ion-item {
+  --background: #ffffff;
+
+  margin-bottom: 8px;
+
+  border-radius: 10px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ==================================================
+   VALIDACIONES
+   ================================================== */
+
+.error-message {
+  margin: -2px 8px 14px;
+
+  font-size: 12px;
+
+  color: #9b3737;
+}
+
+
+/* ==================================================
+   OPCIONES
+   ================================================== */
+
+.form-options {
+  margin-top: 18px;
+}
+
+
+/* Texto explicativo */
+.option-help {
+  margin: 4px 10px 16px;
+
+  font-size: 12px;
+
+  color: #8a5a3b;
+}
+
+
+/* ==================================================
+   BOTONES
+   ================================================== */
+
+.form-actions {
+  margin-top: 26px;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+
+/* Botón Cancelar */
+.cancel-button {
+  --color: #5f3f2c;
+
+  --border-color: #5f3f2c;
+
+  --border-radius: 10px;
+
+  text-transform: none;
+
+  font-weight: 600;
+}
+
+
+/* Botón Subir Excel */
+.excel-button {
+  --color: #6b6b6b;
+
+  --border-color: #b8b8b8;
+
+  --border-radius: 10px;
+
+  text-transform: none;
+
+  font-weight: 600;
+}
+
+
+/* Botón Guardar */
+.save-product-button {
+  --background: #5f3f2c;
+
+  --color: #ffffff;
+
+  --border-radius: 10px;
+
+  text-transform: none;
+
+  font-weight: 600;
+}
+
+
+/* ==================================================
+   RESPONSIVE
+   ================================================== */
+
+/*
+  En pantallas pequeñas colocamos
+  los botones uno debajo de otro.
+*/
+@media (max-width: 600px) {
+
+  .form-actions {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .form-actions ion-button {
+    width: 100%;
+  }
+
+}

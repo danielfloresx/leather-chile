@@ -1,20 +1,213 @@
-<ion-header [translucent]="true">
+<!-- ==================================================
+     ENCABEZADO
+     ================================================== -->
+
+<ion-header>
+
   <ion-toolbar>
+
+
+    <!-- Botón para abrir el menú lateral -->
+    <ion-buttons slot="start">
+
+      <ion-menu-button
+        menu="main-menu">
+      </ion-menu-button>
+
+    </ion-buttons>
+
+
+    <!-- Nombre de la aplicación -->
     <ion-title>
-      Blank
+      Leather Chile
     </ion-title>
+
+
+    <!-- Búsqueda decorativa por ahora -->
+    <ion-buttons slot="end">
+
+      <ion-button>
+
+        <ion-icon
+          name="search-outline">
+        </ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+<!-- ==================================================
+     CONTENIDO
+     ================================================== -->
+
+<ion-content>
+
+
+  <!-- Presentación -->
+  <section class="hero">
+
+    <h1>
+      Cuero con identidad
+    </h1>
+
+    <p>
+      Diseño pensado para durar.
+    </p>
+
+  </section>
+
+
+
+  <!-- ==================================================
+       CATEGORÍAS
+       ================================================== -->
+
+  <section class="categories">
+
+    <div class="categories-grid">
+
+    <!-- HOMBRE -->
+    <ion-card
+      class="category-card"
+      [routerLink]="['/catalogo/hombre']">
+
+      <img
+        src="assets/categorias/hombre.png"
+        alt="Categoría Hombre">
+
+      <ion-card-content>
+        <h2>Hombre</h2>
+        <p>Chaquetas y accesorios</p>
+      </ion-card-content>
+    </ion-card>
+
+
+    <!-- MUJER -->
+    <ion-card
+      class="category-card"
+      [routerLink]="['/catalogo/mujer']">
+
+      <img
+        src="assets/categorias/mujer.png"
+        alt="Categoría Mujer">
+
+      <ion-card-content>
+        <h2>Mujer</h2>
+        <p>Bolsos y chaquetas</p>
+      </ion-card-content>
+    </ion-card>
+
+
+    <!-- OTROS PRODUCTOS -->
+    <ion-card
+      class="category-card category-wide"
+      [routerLink]="['/catalogo/otros']">
+
+      <img
+        src="assets/categorias/otros.png"
+        alt="Otros Productos">
+
+      <ion-card-content>
+        <h2>Otros Productos</h2>
+        <p>Accesorios y artículos de cuero</p>
+      </ion-card-content>
+    </ion-card>
   </div>
+    
+  </section>
+
+
+  <!-- Botón catálogo -->
+  <div class="catalog-access">
+
+    <ion-button
+      [routerLink]="['/catalogo']">
+
+      Ver catálogo
+
+    </ion-button>
+
+  </div>
+
+
+
+  <!-- ==================================================
+       PRODUCTOS DESTACADOS
+       ================================================== -->
+
+  <section class="featured">
+
+
+    <h2>
+      Productos destacados
+    </h2>
+
+
+    <div class="product-grid">
+
+
+      @for (
+        producto of productosDestacados$ | async;
+        track producto.id
+      ) {
+
+
+        <ion-card class="product-card">
+
+
+          <ion-card-content>
+
+
+            <!-- Imagen del producto destacado -->
+            <div class="product-image">
+              <img
+                [src]="producto.imagen"
+                [alt]="producto.nombre">
+            </div>
+
+
+            <!-- Nombre -->
+            <h3>
+              {{ producto.nombre }}
+            </h3>
+
+
+            <!-- Categoría -->
+            <p class="product-category">
+
+              {{ producto.categoria }}
+
+            </p>
+
+
+            <!-- Precio -->
+            <strong>
+
+              ${{ producto.precio.toLocaleString('es-CL') }}
+
+            </strong>
+
+
+          </ion-card-content>
+
+
+        </ion-card>
+
+
+      }
+
+
+    </div>
+
+
+  </section>
+
+
 </ion-content>

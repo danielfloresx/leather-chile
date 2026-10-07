@@ -1,0 +1,340 @@
+/* ==================================================
+   LISTAR PRODUCTOS
+   ================================================== */
+
+ion-content {
+  --background: #f7f5f2;
+}
+
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #1c1c1c;
+}
+
+
+/* Encabezado */
+.list-header {
+  padding: 28px 20px 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+.list-header h1 {
+  margin: 0;
+
+  font-size: 26px;
+  font-weight: 700;
+
+  color: #1c1c1c;
+}
+
+
+.list-header p {
+  margin-top: 7px;
+
+  font-size: 14px;
+
+  color: #6b6b6b;
+}
+
+
+/* Botón superior */
+.add-top-button {
+  --background: #5f3f2c;
+
+  --color: #ffffff;
+
+  --border-radius: 10px;
+
+  text-transform: none;
+
+  font-weight: 600;
+}
+
+
+/* Tabla */
+.table-container {
+  margin: 0 16px 30px;
+
+  overflow-x: auto;
+
+  background: #ffffff;
+
+  border-radius: 14px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+table {
+  width: 100%;
+
+  min-width: 900px;
+
+  border-collapse: collapse;
+}
+
+
+th {
+  padding: 14px;
+
+  text-align: left;
+
+  font-size: 13px;
+
+  color: #5f3f2c;
+
+  background: #e7ddd3;
+}
+
+
+td {
+  padding: 14px;
+
+  border-bottom: 1px solid #eeeeee;
+
+  font-size: 13px;
+
+  color: #333333;
+}
+
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* Estados */
+.status-public {
+  padding: 5px 10px;
+
+  border-radius: 12px;
+
+  background: #e4efe6;
+
+  color: #3f6847;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+.status-featured {
+  padding: 5px 10px;
+
+  border-radius: 12px;
+
+  background: #f3ead8;
+
+  color: #8a5a3b;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+.status-private {
+  padding: 5px 10px;
+
+  border-radius: 12px;
+
+  background: #eeeeee;
+
+  color: #6b6b6b;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+/* Acciones */
+.action-buttons {
+  display: flex;
+
+  gap: 6px;
+}
+
+
+.edit-button {
+  --color: #5f3f2c;
+
+  --border-color: #5f3f2c;
+
+  text-transform: none;
+}
+
+
+.delete-button {
+  --color: #8a3f3f;
+
+  --border-color: #8a3f3f;
+
+  text-transform: none;
+}
+
+
+/* Estado vacío */
+.empty-state {
+  min-height: 380px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 40px 20px;
+}
+
+
+.empty-symbol {
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e7ddd3;
+
+  color: #8a5a3b;
+
+  font-size: 44px;
+
+  margin-bottom: 20px;
+}
+
+
+.empty-state h2 {
+  margin: 0;
+
+  font-size: 22px;
+
+  color: #1c1c1c;
+}
+
+
+.empty-state p {
+  margin: 9px 0 22px;
+
+  color: #6b6b6b;
+
+  font-size: 14px;
+}
+
+
+.empty-add-button {
+  --background: #5f3f2c;
+
+  --color: #ffffff;
+
+  --border-radius: 11px;
+
+  text-transform: none;
+
+  font-weight: 600;
+
+  min-width: 180px;
+}
+
+
+/* Modal */
+ion-modal ion-content {
+  --background: #f7f5f2;
+}
+
+
+.edit-container {
+  padding: 22px;
+}
+
+
+.edit-help {
+  margin: 0 0 20px;
+
+  color: #6b6b6b;
+
+  font-size: 14px;
+}
+
+
+.edit-container ion-item {
+  --background: #ffffff;
+
+  margin-bottom: 12px;
+
+  border-radius: 10px;
+}
+
+
+.toggle-option {
+  margin-top: 14px;
+}
+
+
+.option-help {
+  margin: 4px 10px 16px;
+
+  font-size: 12px;
+
+  color: #8a5a3b;
+}
+
+
+.modal-actions {
+  margin-top: 26px;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+}
+
+
+.cancel-button {
+  --color: #5f3f2c;
+
+  --border-color: #5f3f2c;
+
+  text-transform: none;
+}
+
+
+.save-button {
+  --background: #5f3f2c;
+
+  --color: #ffffff;
+
+  text-transform: none;
+}
+
+
+/* Responsive */
+@media (max-width: 600px) {
+
+  .list-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+}

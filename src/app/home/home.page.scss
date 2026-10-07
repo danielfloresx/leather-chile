@@ -1,27 +1,413 @@
-#container {
-  text-align: center;
+/* ==================================================
+   PANTALLA PRINCIPAL - LEATHER CHILE
+   ================================================== */
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+
+/* Cambia el fondo general de la página */
+ion-content {
+  --background: #f7f5f2;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+
+/* ==================================================
+   ENCABEZADO
+   ================================================== */
+
+/* Personaliza la barra superior */
+ion-toolbar {
+  --background: #ffffff;
+  --color: #1c1c1c;
+
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
 
-  color: #8c8c8c;
+/* Da mayor presencia al nombre Leather Chile */
+ion-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
 
+
+/* ==================================================
+   PRESENTACIÓN PRINCIPAL
+   ================================================== */
+
+/* Contenedor del mensaje principal */
+.hero {
+  padding: 32px 20px 20px 20px;
+}
+
+
+/* Título principal */
+.hero h1 {
   margin: 0;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #1c1c1c;
 }
 
-#container a {
-  text-decoration: none;
+
+/* Texto secundario */
+.hero p {
+  margin-top: 8px;
+
+  font-size: 15px;
+
+  color: #6b6b6b;
+}
+
+
+/* ==================================================
+   CATEGORÍAS
+   ================================================== */
+
+/* Contenedor general de categorías */
+.categories {
+  padding: 0 16px;
+}
+
+
+/* Coloca Hombre y Mujer uno al lado del otro */
+.category-row {
+  display: flex;
+  gap: 12px;
+}
+
+
+/* Diseño general de las tarjetas */
+.category-card {
+  flex: 1;
+
+  margin: 0 0 12px 0;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  background: #ffffff;
+}
+
+
+/* Espacio interior de cada tarjeta */
+.category-card ion-card-content {
+  padding: 22px 18px;
+}
+
+
+/* Nombre de categoría */
+.category-card h2 {
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #1c1c1c;
+}
+
+
+/* Descripción de categoría */
+.category-card p {
+  margin-top: 6px;
+
+  font-size: 13px;
+
+  color: #6b6b6b;
+}
+
+
+/* Hace que Otros Productos utilice todo el ancho */
+.other-category {
+  width: 100%;
+}
+
+
+/* ==================================================
+   PRODUCTOS DESTACADOS
+   ================================================== */
+
+/* Espacio de la sección */
+.featured {
+  padding: 24px 20px;
+}
+
+
+/* Título de productos destacados */
+.featured h2 {
+  margin-bottom: 10px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #1c1c1c;
+}
+
+
+/* Texto temporal */
+.temporary-text {
+  font-size: 14px;
+
+  color: #6b6b6b;
+}
+
+/* ==================================================
+   PRODUCTOS DESTACADOS
+   ================================================== */
+
+/* Organiza los productos en dos columnas */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+
+/* Tarjeta individual de producto */
+.product-card {
+  margin: 0;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Reduce el espacio interno para mantener el diseño compacto */
+.product-card ion-card-content {
+  padding: 12px;
+}
+
+
+/* Espacio temporal que posteriormente será reemplazado por imágenes */
+/* Contenedor de la imagen */
+.product-image {
+  width: 100%;
+  height: 220px;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  margin-bottom: 12px;
+
+  background: #e7ddd3;
+}
+
+
+/* Imagen */
+.product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* Nombre del producto */
+.product-card h3 {
+  margin: 0;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #1c1c1c;
+}
+
+
+/* Categoría del producto */
+.product-category {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #6b6b6b;
+}
+
+
+/* Precio */
+.product-card strong {
+  font-size: 15px;
+  color: #1c1c1c;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.category-card {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.category-card ion-card-content {
+  padding: 16px;
+}
+
+.category-card h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.category-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.category-wide {
+  grid-column: auto;
+}
+
+@media (max-width: 700px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card img {
+    height: 170px;
+  }
+}
+
+.category-card {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.category-card ion-card-content {
+  padding: 16px;
+}
+
+.category-card h2 {
+  margin: 0 0 6px 0;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.category-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* La categoría Otros ocupa todo el ancho */
+.category-wide {
+  grid-column: 1 / -1;
+}
+
+/* Adaptación para celular */
+@media (max-width: 700px) {
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-wide {
+    grid-column: auto;
+  }
+
+  .category-card img {
+    height: 170px;
+  }
+
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.category-card {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.category-card ion-card-content {
+  padding: 16px;
+}
+
+.category-card h2 {
+  margin: 0 0 6px 0;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.category-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* IMPORTANTE:
+   Otros Productos ya no ocupa todo el ancho */
+.category-wide {
+  grid-column: auto;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Otros queda centrado abajo */
+  .category-wide {
+    grid-column: 1 / -1;
+    width: calc(50% - 7px);
+    justify-self: center;
+  }
+
+}
+
+/* Celular */
+@media (max-width: 600px) {
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-wide {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .category-card img {
+    height: 170px;
+  }
+
 }

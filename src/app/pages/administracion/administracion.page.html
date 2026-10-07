@@ -1,0 +1,91 @@
+<!-- Encabezado -->
+<ion-header>
+
+  <ion-toolbar>
+
+
+    <!-- Menú -->
+    <ion-buttons slot="start">
+
+      <ion-menu-button
+        menu="main-menu">
+      </ion-menu-button>
+
+    </ion-buttons>
+
+
+    <ion-title>
+      Administración
+    </ion-title>
+
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+
+<ion-content>
+
+
+  <!-- Presentación -->
+  <section class="admin-header">
+
+    <h1>
+      Gestión del catálogo
+    </h1>
+
+    <p>
+      Administra los productos disponibles en Leather Chile.
+    </p>
+
+  </section>
+
+
+
+  <!-- Opciones -->
+  <section class="admin-options">
+
+
+    <!-- Agregar producto -->
+    <ion-card
+      class="admin-card"
+      [routerLink]="['/agregar-producto']">
+
+
+      <ion-card-content>
+
+
+        <div class="admin-symbol">
+
+          +
+
+        </div>
+
+
+        <div>
+
+
+          <h2>
+            Agregar producto
+          </h2>
+
+
+          <p>
+            Registra un nuevo artículo en el catálogo.
+          </p>
+
+
+        </div>
+
+
+      </ion-card-content>
+
+
+    </ion-card>
+
+
+  </section>
+
+
+</ion-content>
