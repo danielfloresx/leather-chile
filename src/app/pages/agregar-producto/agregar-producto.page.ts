@@ -102,7 +102,6 @@ export class AgregarProductoPage {
     this.productoForm =
       this.formBuilder.group({
 
-
         // Nombre obligatorio.
         // Mínimo 3 caracteres.
         nombre: [
@@ -112,7 +111,6 @@ export class AgregarProductoPage {
             Validators.minLength(3)
           ]
         ],
-
 
         // Descripción obligatoria.
         // Mínimo 10 caracteres.
@@ -124,7 +122,6 @@ export class AgregarProductoPage {
           ]
         ],
 
-
         // Precio obligatorio.
         // Mínimo $1.000.
         precio: [
@@ -135,19 +132,16 @@ export class AgregarProductoPage {
           ]
         ],
 
-
         // Categoría obligatoria.
         categoria: [
           '',
           Validators.required
         ],
 
-
         // Por defecto el producto no es destacado.
         destacado: [
           false
         ],
-
 
         // Por defecto el producto será visible
         // en el catálogo público.
@@ -157,16 +151,12 @@ export class AgregarProductoPage {
 
       });
 
-
-
     // ==================================================
     // RELACIÓN ENTRE PÚBLICO Y DESTACADO
     // ==================================================
 
     const publicoControl =
       this.productoForm.get('publico');
-
-
     const destacadoControl =
       this.productoForm.get('destacado');
 
@@ -176,7 +166,6 @@ export class AgregarProductoPage {
     publicoControl?.valueChanges.subscribe(
       publico => {
 
-
         // Si el producto es público...
         if (publico) {
 
@@ -185,8 +174,7 @@ export class AgregarProductoPage {
 
         } else {
 
-          // Si deja de ser público,
-          // automáticamente deja de ser destacado.
+          // Si deja de ser público, automáticamente deja de ser destacado.
           destacadoControl?.setValue(false);
 
           // Bloqueamos el control destacado.
@@ -198,7 +186,6 @@ export class AgregarProductoPage {
     );
 
   }
-
 
 
   // ==================================================
@@ -213,18 +200,14 @@ export class AgregarProductoPage {
 
       // Mostramos las validaciones.
       this.productoForm.markAllAsTouched();
-
       return;
 
     }
-
 
     // getRawValue permite obtener también
     // controles que estén deshabilitados.
     const datosFormulario =
       this.productoForm.getRawValue();
-
-
 
     // Creamos el nuevo producto.
     const nuevoProducto: Producto = {
@@ -262,10 +245,22 @@ export class AgregarProductoPage {
 
 
     // Guardamos el producto en el servicio.
-    this.productoService
-      .agregarProductoIngresado(
+    try {
+      await this.productoService.agregarProductoIngresado(
         nuevoProducto
       );
+    } catch (error) {
+      console.error('Error al guardar el producto:', error);
+
+      const toast = await this.toastController.create({
+        message: 'No se pudo guardar. Verifica la API y MySQL.',
+        duration: 3000,
+        position: 'bottom'
+      });
+
+      await toast.present();
+      return;
+    }
 
 
 
@@ -273,31 +268,23 @@ export class AgregarProductoPage {
     const toast =
       await this.toastController.create({
 
-        message:
-          'Producto agregado correctamente.',
-
+        message: 'Producto agregado correctamente.',
         duration: 1800,
-
         position: 'bottom'
 
       });
 
 
-
     // Mostramos el mensaje.
     await toast.present();
-
-
 
     // Limpiamos el formulario.
     this.productoForm.reset({
 
       destacado: false,
-
       publico: true
 
     });
-
 
 
     // Después de guardar,
@@ -305,7 +292,6 @@ export class AgregarProductoPage {
     this.router.navigate([
       '/listar-productos'
     ]);
-
   }
 
 }

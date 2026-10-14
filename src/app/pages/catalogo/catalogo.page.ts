@@ -50,18 +50,14 @@ import { ProductoService }
 })
 export class CatalogoPage {
 
-
   // Todos los productos públicos.
   productos: Producto[] = [];
-
 
   // Productos visibles después de filtrar.
   productosFiltrados: Producto[] = [];
 
-
   // Categoría activa.
   categoriaSeleccionada: string = 'Todos';
-
 
   // Texto del buscador.
   textoBusqueda: string = '';
@@ -70,9 +66,7 @@ export class CatalogoPage {
   constructor(
 
     private productoService: ProductoService,
-
     private route: ActivatedRoute,
-
     private router: Router
 
   ) {
@@ -95,25 +89,15 @@ export class CatalogoPage {
       });
 
 
-
     // ==================================================
     // ESCUCHAR CATEGORÍA DE LA RUTA
     // ==================================================
 
-    /*
-      Usamos route.data porque ahora cada ruta
-      tiene su categoría definida directamente.
-
-      Ejemplo:
-      /catalogo/hombre
-    */
     this.route.data.subscribe(
       datos => {
 
-
         const categoria =
           datos['categoria'];
-
 
         if (
           categoria === 'Hombre' ||
@@ -131,15 +115,13 @@ export class CatalogoPage {
 
         }
 
-
-        // Aplicamos el filtro.
+        // Aplicamos el filtro
         this.aplicarFiltros();
 
       }
     );
 
   }
-
 
 
   // ==================================================
@@ -150,11 +132,9 @@ export class CatalogoPage {
     categoria: string
   ): void {
 
-
     // Actualizamos inmediatamente la interfaz.
     this.categoriaSeleccionada =
       categoria;
-
 
     this.aplicarFiltros();
 
@@ -162,36 +142,23 @@ export class CatalogoPage {
     // También actualizamos la URL.
     switch (categoria) {
 
-
       case 'Hombre':
-
         this.router.navigate([
           '/catalogo/hombre'
         ]);
-
         break;
 
-
-
       case 'Mujer':
-
         this.router.navigate([
           '/catalogo/mujer'
         ]);
-
         break;
 
-
-
       case 'Otros Productos':
-
         this.router.navigate([
           '/catalogo/otros'
         ]);
-
         break;
-
-
 
       default:
 
@@ -206,28 +173,22 @@ export class CatalogoPage {
   }
 
 
-
   // ==================================================
   // BUSCADOR
   // ==================================================
 
   buscar(event: any): void {
 
-
     const texto =
       event.detail.value || '';
-
 
     this.textoBusqueda =
       texto
         .toLowerCase()
         .trim();
-
-
     this.aplicarFiltros();
 
   }
-
 
 
   // ==================================================
@@ -235,51 +196,23 @@ export class CatalogoPage {
   // ==================================================
 
   aplicarFiltros(): void {
+    this.productosFiltrados = this.productos
+      .filter(producto => {
+        // Filtrar por categoría.
+        const coincideCategoria =
+          this.categoriaSeleccionada === 'Todos' ||
+          producto.categoria === this.categoriaSeleccionada;
 
+        // Filtrar por nombre o descripción.
+        const coincideBusqueda =
+          producto.nombre.toLowerCase().includes(this.textoBusqueda) ||
+          producto.descripcion.toLowerCase().includes(this.textoBusqueda);
 
-    this.productosFiltrados =
-      this.productos.filter(
-        producto => {
-
-
-          // Categoría.
-          const coincideCategoria =
-
-            this.categoriaSeleccionada === 'Todos'
-
-            ||
-
-            producto.categoria ===
-              this.categoriaSeleccionada;
-
-
-
-          // Nombre o descripción.
-          const coincideBusqueda =
-
-            producto.nombre
-              .toLowerCase()
-              .includes(
-                this.textoBusqueda
-              )
-
-            ||
-
-            producto.descripcion
-              .toLowerCase()
-              .includes(
-                this.textoBusqueda
-              );
-
-
-          return (
-            coincideCategoria &&
-            coincideBusqueda
-          );
-
-        }
-      );
-
+        return coincideCategoria && coincideBusqueda;
+      })
+      // Mostrar primero los productos con ID más antiguo.
+      .sort((a, b) => a.id - b.id);
   }
+
 
 }

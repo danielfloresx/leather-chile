@@ -61,35 +61,27 @@ import { ProductoService }
 })
 export class ListarProductosPage {
 
-
   // Observable de productos administrativos.
   productosIngresados$;
-
 
   // Control del modal.
   modalEditarAbierto: boolean = false;
 
-
   // Copia del producto que se está editando.
   productoEditando: Producto | null = null;
-
-
 
   constructor(
 
     private alertController: AlertController,
-
     private productoService: ProductoService
 
   ) {
-
 
     this.productosIngresados$ =
       this.productoService
         .productosIngresados$;
 
   }
-
 
 
   // ==================================================
@@ -100,22 +92,18 @@ export class ListarProductosPage {
     producto: Producto
   ): void {
 
-
     // Copia del producto.
     this.productoEditando = {
 
       ...producto,
-
       publico:
         producto.publico ?? true
 
     };
 
-
     this.modalEditarAbierto = true;
 
   }
-
 
 
   // ==================================================
@@ -125,11 +113,9 @@ export class ListarProductosPage {
   cerrarEditar(): void {
 
     this.modalEditarAbierto = false;
-
     this.productoEditando = null;
 
   }
-
 
 
   // ==================================================
@@ -140,50 +126,47 @@ export class ListarProductosPage {
     publico: boolean
   ): void {
 
-
     if (!this.productoEditando) {
-
       return;
-
     }
 
 
-    // Si deja de ser público,
-    // deja también de ser destacado.
+    // Si deja de ser público, deja también de ser destacado.
     if (!publico) {
-
       this.productoEditando.destacado = false;
-
     }
 
   }
-
 
 
   // ==================================================
   // GUARDAR CAMBIOS
   // ==================================================
 
-  guardarCambios(): void {
-
-
+  async guardarCambios(): Promise<void> {
     if (!this.productoEditando) {
-
       return;
-
     }
 
-
-    this.productoService
-      .editarProductoIngresado(
+    try {
+      await this.productoService.editarProductoIngresado(
         this.productoEditando
       );
 
+      this.cerrarEditar();
 
-    this.cerrarEditar();
+    } catch (error) {
+      console.error('Error al editar:', error);
 
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'No se pudieron guardar los cambios.',
+        buttons: ['Aceptar']
+      });
+
+      await alert.present();
+    }
   }
-
 
 
   // ==================================================
@@ -199,10 +182,7 @@ export class ListarProductosPage {
       await this.alertController.create({
 
         header: 'Eliminar producto',
-
-        message:
-          `¿Deseas eliminar "${producto.nombre}"?`,
-
+        message: `¿Deseas eliminar "${producto.nombre}"?`,
         buttons: [
 
           {
@@ -212,21 +192,15 @@ export class ListarProductosPage {
 
           {
             text: 'Eliminar',
-
             role: 'destructive',
 
             handler: () => {
-
               this.eliminarProducto(
                 producto.id
               );
-
             }
-
           }
-
         ]
-
       });
 
 
@@ -235,21 +209,25 @@ export class ListarProductosPage {
   }
 
 
-
   // ==================================================
   // ELIMINAR
   // ==================================================
 
-  eliminarProducto(
-    id: number
-  ): void {
+  async eliminarProducto(id: number): Promise<void> {
+    try {
+      await this.productoService.eliminarProductoIngresado(id);
 
+    } catch (error) {
+      console.error('Error al eliminar:', error);
 
-    this.productoService
-      .eliminarProductoIngresado(
-        id
-      );
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'No se pudo eliminar el producto.',
+        buttons: ['Aceptar']
+      });
 
+      await alert.present();
+    }
   }
 
 }
